@@ -137,25 +137,28 @@ def _run_backfill(scheme, sync_state: SyncState, fetcher: MFAPIFetcher):
 
 
 def _run_incremental_sync(scheme, sync_state: SyncState, fetcher: MFAPIFetcher):
-    """
-    For already-backfilled schemes: fetch full history again but only
-    upsert new records (INSERT OR IGNORE logic via get_or_create).
-    Since mfapi has no 'since date' filter, we always fetch all but
-    only insert what's new — bulk_upsert is idempotent.
-    """
     try:
         raw_records = fetcher.fetch_scheme_nav_history(scheme.scheme_code)
-        saved_count = _bulk_upsert_nav(scheme, raw_records)
+
+        with transaction.atomic():
+            saved_count = _bulk_upsert_nav(scheme, raw_records)
 
         sync_state.last_synced_at = timezone.now()
+
         if raw_records:
-            dates = [
-                MFAPIFetcher.parse_date(r['date'])
-                for r in raw_records
-                if r.get('nav') not in (None, '', '-')
-            ]
-            sync_state.latest_date = max(dates)
+            dates = []
+            for r in raw_records:
+                if r.get('nav') not in (None, '', '-'):
+                    try:
+                        dates.append(MFAPIFetcher.parse_date(r['date']))
+                    except Exception:
+                        continue          # skip unparseable dates gracefully
+
+            if dates:
+                sync_state.latest_date = max(dates)
+
             sync_state.nav_count = NAVData.objects.filter(scheme=scheme).count()
+
         sync_state.save(update_fields=['last_synced_at', 'latest_date', 'nav_count'])
 
         _pipeline_status['completed_schemes'].append(scheme.scheme_code)
@@ -167,7 +170,10 @@ def _run_incremental_sync(scheme, sync_state: SyncState, fetcher: MFAPIFetcher):
     except Exception as e:
         sync_state.status = SyncState.STATUS_FAILED
         sync_state.error_message = str(e)
-        sync_state.save(update_fields=['status', 'error_message'])
+        try:
+            sync_state.save(update_fields=['status', 'error_message'])
+        except Exception:
+            pass
         _pipeline_status['failed_schemes'].append(scheme.scheme_code)
         logger.error(
             f"[PIPELINE] Incremental sync FAILED: "
