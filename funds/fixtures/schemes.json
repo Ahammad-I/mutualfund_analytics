@@ -1,0 +1,112 @@
+[
+  {
+    "model": "funds.scheme",
+    "pk": "120505",
+    "fields": {
+      "scheme_name": "Axis Midcap Fund - Direct Plan - Growth",
+      "amc": "axis",
+      "category": "midcap",
+      "isin": "INF846K01EH3",
+      "is_active": true
+    }
+  },
+  {
+    "model": "funds.scheme",
+    "pk": "125354",
+    "fields": {
+      "scheme_name": "Axis Small Cap Fund - Direct Plan - Growth",
+      "amc": "axis",
+      "category": "smallcap",
+      "isin": "INF846K01K35",
+      "is_active": true
+    }
+  },
+  {
+    "model": "funds.scheme",
+    "pk": "118989",
+    "fields": {
+      "scheme_name": "HDFC Mid Cap Fund - Growth Option - Direct Plan",
+      "amc": "hdfc",
+      "category": "midcap",
+      "isin": "INF179K01XQ0",
+      "is_active": true
+    }
+  },
+  {
+    "model": "funds.scheme",
+    "pk": "130503",
+    "fields": {
+      "scheme_name": "HDFC Small Cap Fund - Growth Option - Direct Plan",
+      "amc": "hdfc",
+      "category": "smallcap",
+      "isin": "INF179KA1RW5",
+      "is_active": true
+    }
+  },
+  {
+    "model": "funds.scheme",
+    "pk": "120381",
+    "fields": {
+      "scheme_name": "ICICI Prudential MidCap Fund - Direct Plan - Growth",
+      "amc": "icici",
+      "category": "midcap",
+      "isin": "INF109K011N7",
+      "is_active": true
+    }
+  },
+  {
+    "model": "funds.scheme",
+    "pk": "120591",
+    "fields": {
+      "scheme_name": "ICICI Prudential Smallcap Fund - Direct Plan - Growth",
+      "amc": "icici",
+      "category": "smallcap",
+      "isin": "INF109K015M0",
+      "is_active": true
+    }
+  },
+  {
+    "model": "funds.scheme",
+    "pk": "119716",
+    "fields": {
+      "scheme_name": "SBI MIDCAP FUND - DIRECT PLAN - GROWTH",
+      "amc": "sbi",
+      "category": "midcap",
+      "isin": "INF200K01TP4",
+      "is_active": true
+    }
+  },
+  {
+    "model": "funds.scheme",
+    "pk": "125497",
+    "fields": {
+      "scheme_name": "SBI Small Cap Fund - Direct Plan - Growth",
+      "amc": "sbi",
+      "category": "smallcap",
+      "isin": "INF200K01T51",
+      "is_active": true
+    }
+  },
+  {
+    "model": "funds.scheme",
+    "pk": "119775",
+    "fields": {
+      "scheme_name": "Kotak Midcap Fund - Direct Plan - Growth",
+      "amc": "kotak",
+      "category": "midcap",
+      "isin": "INF174K01LT0",
+      "is_active": true
+    }
+  },
+  {
+    "model": "funds.scheme",
+    "pk": "120164",
+    "fields": {
+      "scheme_name": "Kotak-Small Cap Fund - Growth - Direct",
+      "amc": "kotak",
+      "category": "smallcap",
+      "isin": "INF174K01KT2",
+      "is_active": true
+    }
+  }
+]
