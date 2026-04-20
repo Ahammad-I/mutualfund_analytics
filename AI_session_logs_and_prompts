@@ -1,5 +1,14 @@
 # AI Session Log — Mutual Fund Analytics Platform
 
+**me:**:Scheme Discovery: mfapi.in uses scheme codes. You must identify which codes
+belong to your 5 AMCs in 2 categories.
+2. Rate Limit Orchestration: Three concurrent limits that must ALL be satisfied
+3. Historical Backfill: Each scheme needs full NAV history (up to 10 years). With 300/hour
+limit, you must spread requests intelligently.
+4. Analytics Computation: Rolling 3Y, 5Y & 10Y returns across 10 years
+5. Data Quality: NAV data has gaps (weekends, holidays), some schemes have limited
+history. explain in detail with examples
+
 hey can you help me understand / build this thing
 
 im trying to make a django based mutual fund analytics system
@@ -308,4 +317,4 @@ A system where you know exactly what's wrong and why is production-ready. A syst
 
 ---
 
-**[Session ended]**
+ 
